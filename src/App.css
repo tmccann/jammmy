@@ -1,0 +1,33 @@
+/* Ensure full width for the search bar */
+body, html, #root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .results-container {
+    display: flex;            /* Flexbox to align items side by side */
+    justify-content: space-between; /* Ensure items are spaced evenly */
+    width: 100%;              /* Full width of the container */
+    min-height: 80%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  /* Each component takes 50% of the width */
+  .results-container > * {
+    border: solid blue 2px;
+    width: 48%;              /* Adjusted to leave a gap between elements */
+    box-sizing: border-box;
+    
+  }
+  
+  /* Ensure the search bar takes the full width at the top */
+  .SearchBar {
+    border: solid red 2px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  

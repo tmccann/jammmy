@@ -1,0 +1,17 @@
+form{
+    margin: auto;
+    border: solid green 2px;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+
+}
+
+form > * {
+    margin: auto;
+    max-width: 30%;
+}
+
+button{
+
+}
