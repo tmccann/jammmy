@@ -1,11 +1,13 @@
 import style from './SearchBar.module.css'
 
-function SearchBar() {
+function SearchBar({handleSearch}) {
+
+  
   return (
     <>
-    <form className='style.form'>
+    <form onSubmit={handleSearch} className='style.form'>
         <label htmlFor="SearchBox"></label>
-        <input type="text" />
+        <input type="text" id="searchBox" name="search" />
         <button>Search</button>
     </form>
     </>
