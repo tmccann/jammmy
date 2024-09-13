@@ -1,6 +1,11 @@
+import styles from './SearchResults.module.css'
+
 function SearchResult() {
   return (
-    <div>SearchResult</div>
+    <section className={styles.SearchResults}>
+      <h2>Results</h2>
+    </section>
   )
 }
-export default SearchResult
+
+export default SearchResult;

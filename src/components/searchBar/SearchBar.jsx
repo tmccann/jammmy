@@ -1,16 +1,15 @@
-import style from './SearchBar.module.css'
+import styles from './SearchBar.module.css'
 
-function SearchBar({handleSearch}) {
-
-  
+function SearchBar() {
   return (
     <>
-    <form onSubmit={handleSearch} className='style.form'>
-        <label htmlFor="SearchBox"></label>
-        <input type="text" id="searchBox" name="search" />
-        <button>Search</button>
-    </form>
+      <form className={styles.SearchBar}>
+        <label htmlFor="searchBox"></label>
+        <input type="text" id="searchBox" name="search" placeholder='Enter A Song Title' />
+        <button className={styles.SearchButton}>Search</button>
+      </form>
     </>
-  )
+  );
 }
-export default SearchBar
+
+export default SearchBar;
