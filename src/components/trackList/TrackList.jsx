@@ -1,11 +1,21 @@
 import styles from './TrackList.module.css'
+import Track from '../track/Track'
 
-function SearchResult() {
+// eslint-disable-next-line react/prop-types
+function TrackList({ playlistTracks }) {
+
+
   return (
     <section className={styles.TrackList}>
-      <h2>Track List</h2>
+      {
+        playlistTracks.map((trackData)=>(
+          <Track 
+            key={trackData.id}
+            trackData={trackData}/>
+        ))
+      }
     </section>
   )
 }
 
-export default SearchResult;
+export default TrackList;

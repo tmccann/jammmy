@@ -3,22 +3,47 @@ import './App.css';
 
 import SearchBar from './components/searchBar/SearchBar';
 import SearchResult from './components/searchResult/SearchResult';
-import TrackList from './components/trackList/TrackList'
+import PlayList from './components/playList/PlayList';
 
 function App() {
-  const [searchResults, setSearchResults] = useState([
+  const [searchData, setSearchData] = useState([
     {
-      name: "Example Track Name 1",
-      artist: "Example Track Artist 1",
-      album: "Example Track Album 1",
       id: 1,
+      name: "Stan",
+      artist : "Eminem",
+      album: "Curtain Call: The Hits",
+      
     },
     {
-      name: "Example Track Name 2",
-      artist: "Example Track Artist 2",
-      album: "Example Track Album 2",
       id: 2,
+      name: "I'm Feeling It",
+      artist: "Sunset Bros & Mark McCabe",
+      album: "100% Clubland X-Treme 2",
+     
     },
+    {
+      id: 3,
+      name: "Vampire",
+      artist: "Olivia Rodrigo",
+      album: "GUTS",
+     
+    },
+    {
+      id: 4,
+      name: "Play That Song",
+      artist: "Train",
+      album: "a girl a bottle a boat",
+      
+    },
+    {
+      id: 5,
+      name: "TEXAS HOLD 'EM",
+      artist: "Beyoncé",
+      album: "COWBOY CARTER",
+     
+    },
+    
+    
   ]);
   const [playlistName, setPlaylistName] = useState("Example Playlist Name");
   const [playlistTracks, setPlaylistTracks] = useState([
@@ -49,8 +74,10 @@ function App() {
       <section className='App'>
         <SearchBar />
         <section className='playListContainer'>
-        <SearchResult className/>
-        <TrackList />
+        <SearchResult/>
+        <PlayList
+          playlistTracks={playlistTracks}
+        />
         </section>
        
       </section>
