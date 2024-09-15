@@ -45,6 +45,8 @@ function App() {
     
     
   ]);
+
+  const [userSearch,setUserSearch]= useState('')
   const [playlistName, setPlaylistName] = useState("Example Playlist Name");
   const [playlistTracks, setPlaylistTracks] = useState([
     {
@@ -66,13 +68,18 @@ function App() {
       id: 33,
     },
   ]);
- 
+  
+  const handleSearch = (searchTerm) => {
+    setUserSearch(searchTerm);
+    console.log("Search Term:", searchTerm);
+  };
+
 
   return (
     <>
       <h1>Ja<span className='highlight'>mmm</span>ing</h1>
       <section className='App'>
-        <SearchBar />
+        <SearchBar handleSearch={handleSearch}/>
         <section className='playListContainer'>
         <SearchResult/>
         <PlayList
