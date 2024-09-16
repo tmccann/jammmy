@@ -6,8 +6,9 @@ function TrackList({ tracks, listType }) {
     <section className={styles.TrackList}>
       {tracks.map((trackData) => (
         <Track 
-          key={`${listType}-${trackData.id}`}
-          id={`${listType}${trackData.id}`}
+          key={trackData.id}
+          id={trackData.id}
+          listType={listType}
           trackData={trackData}
         />
       ))}
