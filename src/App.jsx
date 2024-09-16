@@ -42,9 +42,7 @@ function App() {
       album: "COWBOY CARTER",
      
     },
-    
-    
-  ]);
+    ]);
 
   const [userSearch,setUserSearch]= useState('')
   const [playlistName, setPlaylistName] = useState("Example Playlist Name");
@@ -53,19 +51,19 @@ function App() {
       name: "Example Playlist Name 1",
       artist: "Example Playlist Artist 1",
       album: "Example Playlist Album 1",
-      id: 11,
+      id: 1,
     },
     {
       name: "Example Playlist Name 2",
       artist: "Example Playlist Artist 2",
       album: "Example Playlist Album 2",
-      id: 22,
+      id: 2,
     },
     {
       name: "Example Playlist Name 3",
       artist: "Example Playlist Artist 3",
       album: "Example Playlist Album 3",
-      id: 33,
+      id: 3,
     },
   ]);
   
@@ -81,9 +79,9 @@ function App() {
       <section className='App'>
         <SearchBar handleSearch={handleSearch}/>
         <section className='playListContainer'>
-        <SearchResult/>
+        <SearchResult search={searchData}/>
         <PlayList
-          playlistTracks={playlistTracks}
+          tracks={playlistTracks}
         />
         </section>
        

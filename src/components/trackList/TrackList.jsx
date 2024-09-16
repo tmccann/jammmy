@@ -1,21 +1,18 @@
-import styles from './TrackList.module.css'
-import Track from '../track/Track'
+import styles from './TrackList.module.css';
+import Track from '../track/Track';
 
-// eslint-disable-next-line react/prop-types
-function TrackList({ playlistTracks }) {
-
-
+function TrackList({ tracks, listType }) {
   return (
     <section className={styles.TrackList}>
-      {
-        playlistTracks.map((trackData)=>(
-          <Track 
-            key={trackData.id}
-            trackData={trackData}/>
-        ))
-      }
+      {tracks.map((trackData) => (
+        <Track 
+          key={`${listType}-${trackData.id}`}
+          id={`${listType}${trackData.id}`}
+          trackData={trackData}
+        />
+      ))}
     </section>
-  )
+  );
 }
 
 export default TrackList;

@@ -1,10 +1,11 @@
 import styles from './SearchResults.module.css'
+import TrackList from '../trackList/TrackList';
 
-function SearchResult({ searchData }) {
-  console.log(searchData)
+function SearchResult({ search }) {
+  console.log(search)
   return (
     <section className={styles.SearchResults}>
-      <TrackList searchData={searchData} />
+      <TrackList tracks={search} listType="search"/>
     </section>
   )
 }
