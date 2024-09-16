@@ -1,11 +1,10 @@
 import styles from './SearchResults.module.css'
 
-// eslint-disable-next-line react/prop-types
-function SearchResult() {
-  
+function SearchResult({ searchData }) {
+  console.log(searchData)
   return (
     <section className={styles.SearchResults}>
-      <h2>Result</h2>
+      <TrackList searchData={searchData} />
     </section>
   )
 }
