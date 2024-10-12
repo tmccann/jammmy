@@ -1,19 +1,22 @@
 import styles from './TrackList.module.css';
 import Track from '../track/Track';
 
-function TrackList({ tracks, listType }) {
+function TrackList({ tracks, listType,onAdd, hasSearched }) {
+
+ 
   return (
-    <section className={styles.TrackList}>
+    <ul className={styles.TrackList}>
       {tracks.map((trackData) => (
-        <Track 
+        <Track
+          onAdd={onAdd}
           key={trackData.id}
           id={trackData.id}
           listType={listType}
           trackData={trackData}
         />
       ))}
-    </section>
-  );
-}
+    </ul>
+  
+)}
 
 export default TrackList;

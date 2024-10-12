@@ -1,14 +1,10 @@
 import styles from "./Track.module.css";
 
-const onAdd = (id) => {
-  console.log(`added: ${id}`);
-};
 
-const onRemove = (id) => {
-  console.log(`removed: ${id}`);
-};
 
-function Track({ trackData, id, listType }) {
+
+
+function Track({ trackData, id, listType, onAdd, onRemove}) {
   const actionButton =
     listType === "search" ? (
       <button
@@ -27,18 +23,22 @@ function Track({ trackData, id, listType }) {
         -
       </button>
     );
+    
+    const clickedId = (id) =>{
+      onAdd(id)
+    }
 
   return (
-    <div className={styles.Track}>
-      <section className={styles.TrackInformation} id={id}>
+    <li className={styles.Track}>
+      <div className={styles.TrackInformation} id={id}>
         <h3>
-          {trackData.name} {actionButton}{" "}
+          {trackData.name} {actionButton}
         </h3>
         <p>
-          {trackData.artist} | {trackData.album}{" "}
+          {trackData.artist} | {trackData.album}
         </p>
-      </section>
-    </div>
+      </div>
+    </li>
   );
 }
 export default Track;

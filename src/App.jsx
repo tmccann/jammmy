@@ -1,48 +1,87 @@
-import React, { useState } from 'react';
-import './App.css';
-import { sampleData } from './data/sampleData';
-import SearchBar from './components/searchBar/SearchBar';
-import SearchResult from './components/searchResult/SearchResult';
-import PlayList from './components/playList/PlayList';
-import { getAccessToken, startOAuthFlow } from './util/spotify'; 
+import { useState, useCallback, useEffect } from "react";
+import Spotify from "./utils/Spotify";
+import { exchangeCodeForTokens } from "./utils/authCode";
+import "./App.css";
+
+import SearchBar from "./components/searchBar/SearchBar";
+import SearchResult from "./components/searchResult/SearchResult";
+import PlayList from "./components/playList/PlayList";
 
 function App() {
-  const [searchData, setSearchData] = useState([
-    { id: 1, name: "Stan", artist: "Eminem", album: "Curtain Call: The Hits" },
-    { id: 2, name: "I'm Feeling It", artist: "Sunset Bros & Mark McCabe", album: "100% Clubland X-Treme 2" },
-    { id: 3, name: "Vampire", artist: "Olivia Rodrigo", album: "GUTS" },
-    { id: 4, name: "Play That Song", artist: "Train", album: "a girl a bottle a boat" },
-    { id: 5, name: "TEXAS HOLD 'EM", artist: "Beyoncé", album: "COWBOY CARTER" },
-  ]);
+  const [searchData, setSearchData] = useState([]);
+  const [userSearch, setUserSearch] = useState("");
+  const [playlistTracks, setPlaylistTracks] = useState([]);
 
-  const [userSearch, setUserSearch] = useState('');
-  const [playlistName, setPlaylistName] = useState("Example Playlist Name");
-  const [playlistTracks, setPlaylistTracks] = useState([
-    { name: "Example Playlist Name 1", artist: "Example Playlist Artist 1", album: "Example Playlist Album 1", id: 11 },
-    { name: "Example Playlist Name 2", artist: "Example Playlist Artist 2", album: "Example Playlist Album 2", id: 22 },
-    { name: "Example Playlist Name 3", artist: "Example Playlist Artist 3", album: "Example Playlist Album 3", id: 33 },
-  ]);
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has("code")) {
+      let code = urlParams.get("code");
+      if (code) {
+        exchangeCodeForTokens(code);
+      }
+    }
+    
+  }, []);
 
-  const handleSearch = (searchTerm) => {
-    const token = getAccessToken();
-    if (token) {
-      setUserSearch(searchTerm);
-      console.log("Search Term:", searchTerm);
-      // Perform search logic here, e.g., filter `searchData`
-    } else {
-      // Redirect to Spotify for authorization if no token is found
-      startOAuthFlow();
+  const handleSearch = useCallback(async (term) => {
+    try {
+      const data = await Spotify.trackSearch(term);
+      if(data.length > 0){
+        setSearchData(data);
+      }else{
+        console.error('no traks found')
+        console.log(hasSearched)
+      }     
+    } catch (error) {
+      console.error("Search failed:", error);
+    }
+  }, []);
+
+
+  const handlePlayListSubmit = (playListName) =>{
+
+    const trackUri =playlistTracks.map((track)=>(track.uri))
+    Spotify.addPlayList(playListName, trackUri)
+    setPlaylistTracks([])
+    setSearchData([])
+    
+  }
+
+
+  const onAdd = (id) => {
+    const trackCheck = playlistTracks.filter((track) => track.id === id)
+    trackCheck.length ? console.log(true) : console.log(false)
+    if(!trackCheck.length){
+    const newTrack = searchData.filter((track) => track.id === id)
+      setPlaylistTracks(searchData => [newTrack[0], ...searchData] )
+    } else{
+      console.log('already added')
     }
   };
 
+  const onRemove = (id) => {
+    setPlaylistTracks(playlistTracks.filter((track)=> track.id !== id))
+  };
+  
+  
+
+  
   return (
     <>
-      <h1>Ja<span className='highlight'>mmm</span>ing</h1>
-      <section className='App'>
+      <h1>
+        Ja<span className="highlight">mmm</span>ing
+      </h1>
+      <section className="App">
         <SearchBar handleSearch={handleSearch} />
-        <section className='playListContainer'>
-          <SearchResult search={searchData} />
-          <PlayList tracks={playlistTracks} />
+
+        <section className="playListContainer">
+          <SearchResult search={searchData} onAdd={onAdd}/>
+          <PlayList 
+            tracks={playlistTracks} 
+            onRemove={onRemove}
+            handlePlayListSubmit={handlePlayListSubmit}
+            
+            />
         </section>
       </section>
     </>
@@ -50,7 +89,3 @@ function App() {
 }
 
 export default App;
-
-
-
-
