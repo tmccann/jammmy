@@ -8,6 +8,7 @@ import SearchResult from "./components/searchResult/SearchResult";
 import PlayList from "./components/playList/PlayList";
 
 function App() {
+
   const [searchData, setSearchData] = useState([]);
   const [userSearch, setUserSearch] = useState("");
   const [playlistTracks, setPlaylistTracks] = useState([]);
@@ -15,11 +16,18 @@ function App() {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.has("code")) {
+
       let code = urlParams.get("code");
       if (code) {
         exchangeCodeForTokens(code);
       }
     }
+    // clean up to stop going into infinite loop 
+    return () => {
+      // Reset the URL back to the default app URL (without the "code" query param)
+      window.history.replaceState({}, document.title, "/");
+
+    };
     
   }, []);
 
