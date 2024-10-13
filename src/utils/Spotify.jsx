@@ -1,13 +1,14 @@
 // Spotify.jsx
 import { authCode, getRefreshToken } from "./authCode"; // Adjust the path as needed
 
-// Other constants
-const accessToken = window.localStorage.getItem("access_token");
-const refreshToken = window.localStorage.getItem("refresh_token");
-const expiryTime = window.localStorage.getItem("expiry_time");
 
 const Spotify = {
   async getAccessToken() {
+    // moved all access token information into function this makes sure there are read  correctly on 
+    // each run this solved the issue of the redirect funtion running on first 2 attemps to use app
+    const accessToken = window.localStorage.getItem("access_token");
+    const refreshToken = window.localStorage.getItem("refresh_token");
+    const expiryTime = window.localStorage.getItem("expiry_time");
     const now = new Date().getTime();
     // check to see if we have a token, refrsh token and expiry time
     if (accessToken !== null && refreshToken !== null && expiryTime !== null) {
@@ -55,7 +56,7 @@ const Spotify = {
       }
     } catch (error) {
       console.error("Error:", error);
-    
+
     }
     // if fail return empty array
     return []
