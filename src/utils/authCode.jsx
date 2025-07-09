@@ -1,7 +1,7 @@
 
 // Constants
 const clientId = import.meta.env.VITE_SPOTIFY_CLIENTID;
-const redirectUri = "http://localhost:5173/callback";
+const redirectUri = window.location.origin + "/callback"
 const scope = "user-read-private user-read-email playlist-modify-public playlist-modify-private";
 const authUrl = new URL("https://accounts.spotify.com/authorize");
 const url = "https://accounts.spotify.com/api/token"
