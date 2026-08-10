@@ -1,10 +1,9 @@
 // Spotify.jsx
 import { authCode, getRefreshToken } from "./authCode"; // Adjust the path as needed
 
-
 const Spotify = {
   async getAccessToken() {
-    // moved all access token information into function this makes sure there are read  correctly on 
+    // moved all access token information into function this makes sure there are read  correctly on
     // each run this solved the issue of the redirect funtion running on first 2 attemps to use app
     const accessToken = window.localStorage.getItem("access_token");
     const refreshToken = window.localStorage.getItem("refresh_token");
@@ -37,7 +36,7 @@ const Spotify = {
         {
           method: "GET",
           headers: { Authorization: `Bearer ${token}` },
-        }
+        },
       );
       //  return track data if request ok
       if (response.ok) {
@@ -56,10 +55,9 @@ const Spotify = {
       }
     } catch (error) {
       console.error("Error:", error);
-
     }
     // if fail return empty array
-    return []
+    return [];
   },
 
   async addPlayList(playListName, trackUri) {
@@ -86,21 +84,18 @@ const Spotify = {
     }
     // create playlist name
     try {
-      const response = await fetch(
-        `https://api.spotify.com/v1/users/${id}/playlists`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            name: playListName,
-            description: "New playlist description",
-            public: false,
-          }),
-        }
-      );
+      const response = await fetch(`https://api.spotify.com/v1/me/playlists`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: playListName,
+          description: "New playlist description",
+          public: false,
+        }),
+      });
       if (response.ok) {
         const responseData = await response.json();
         playListId = responseData.id;
@@ -119,7 +114,7 @@ const Spotify = {
       console.log(typeof playListId);
       console.log(trackUri);
       const response = await fetch(
-        `https://api.spotify.com/v1/playlists/${playListId}/tracks`,
+        `https://api.spotify.com/v1/playlists/${playListId}/items`,
         {
           method: "POST",
           headers: {
@@ -130,7 +125,7 @@ const Spotify = {
             uris: trackUri,
             position: 0,
           }),
-        }
+        },
       );
       if (response.ok) {
         const responseData = await response.json();
