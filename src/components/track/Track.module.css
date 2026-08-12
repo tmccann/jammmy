@@ -2,23 +2,39 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid rgba(256, 256, 256, 0.8);
+    padding: var(--space-sm) var(--space-xs);
+    border-bottom: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition-fast);
+}
+
+.Track:hover {
+    background-color: var(--color-surface-muted);
+}
+
+.Track:last-child {
+    border-bottom: none;
 }
 
 .TrackAction {
     cursor: pointer;
-    padding: .25rem;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
     font-size: 1rem;
-    transition: color .25s;
-    border: 0px;
-    background-color: rgba(0, 0, 0, 0);
-    color: #fff;
-    margin-left: auto;
-
+    line-height: 1;
+    transition: background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+    border: 0;
+    background-color: var(--color-surface-muted);
+    color: var(--color-foreground);
+    margin-left: var(--space-xs);
 }
 
 .TrackAction:hover {
-    color: rgba(265, 265, 265, .5);
+    background-color: var(--color-secondary);
+    box-shadow: 0 0 12px rgba(67, 56, 202, 0.5);
+    transform: scale(1.08);
 }
 
 .TrackInformation {
@@ -26,18 +42,22 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 5rem;
+    min-height: 4rem;
 }
 
 .TrackInformation h3 {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    margin-bottom: .2rem;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+    color: var(--color-foreground);
 }
 
 .TrackInformation p {
-
-    font-size: .8rem;
+    font-size: 0.8rem;
     font-weight: 300;
-    color: rgba(256, 256, 256, 0.8);
+    color: var(--color-foreground-muted);
 }

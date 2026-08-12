@@ -1,0 +1,45 @@
+/*
+  Jammmy design tokens
+  Generated with the ui-ux-pro-max design system: "Midnight indigo" dark palette.
+  Change a value here and it updates everywhere it's used.
+*/
+
+:root {
+  /* Core palette */
+  --color-background: #0F0F23;
+  --color-surface: #1B1B30;
+  --color-surface-muted: #27273B;
+  --color-primary: #1E1B4B;
+  --color-secondary: #4338CA;
+  --color-accent: #22C55E;
+  --color-accent-hover: #16A34A;
+  --color-border: #312E81;
+  --color-destructive: #EF4444;
+  --color-destructive-hover: #DC2626;
+
+  /* Text */
+  --color-foreground: #F8FAFC;
+  --color-foreground-muted: #94A3B8;
+  --color-on-primary: #FFFFFF;
+  --color-on-accent: #0F172A;
+
+  /* Typography */
+  --font-heading: 'Righteous', cursive;
+  --font-body: 'Poppins', sans-serif;
+
+  /* Spacing scale */
+  --space-xs: 0.5rem;
+  --space-sm: 0.8rem;
+  --space-md: 1.2rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+
+  /* Shape */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-pill: 999px;
+
+  /* Motion */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+}
