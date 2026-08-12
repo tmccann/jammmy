@@ -1,40 +1,56 @@
-
 .SearchBar {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 6rem;
-    margin-bottom: 6rem;
+    padding-top: var(--space-xl);
+    margin-bottom: var(--space-lg);
 }
 
 .SearchBar input {
-    max-width: 300px;
-    padding: 1rem 0;
-    border: 1px solid #fff;
-    border-radius: 3px;
-    margin-bottom: 2rem;
-    color: #010c3f;
+    max-width: 320px;
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-md);
+    background-color: var(--color-surface);
+    color: var(--color-foreground);
     text-align: center;
+    font-family: var(--font-body);
     font-size: 1rem;
+    transition: border-color var(--transition-fast);
+}
+
+.SearchBar input::placeholder {
+    color: var(--color-foreground-muted);
 }
 
 .SearchBar input:focus {
     outline: none;
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 3px rgba(67, 56, 202, 0.25);
 }
 
 .SearchButton {
     cursor: pointer;
     width: 8rem;
-    padding: .77rem 0;
-    border-radius: 54px;
-    background-color: #010c3f;
+    padding: 0.77rem 0;
+    border-radius: var(--radius-pill);
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
     text-align: center;
-    transition: background-color .25s;
-    border: 0px;
-    color: #fff;
-    font-weight: 500;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    border: 0;
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(67, 56, 202, 0.35);
 }
 
 .SearchButton:hover {
-    background-color: rgba(108, 65, 233, .7);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 22px rgba(67, 56, 202, 0.5);
+}
+
+.SearchButton:active {
+    transform: translateY(0);
 }

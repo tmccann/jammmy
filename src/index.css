@@ -19,6 +19,16 @@ ol[role='list'] {
   list-style: none;
 }
 
+/* Jammmy uses plain uls for track lists without the role attribute, so reset those too */
+ul {
+  list-style: none;
+}
+
+body {
+  background-color: var(--color-background);
+  font-family: var(--font-body);
+}
+
 /* Set core root defaults */
 html:focus-within {
   scroll-behavior: smooth;
